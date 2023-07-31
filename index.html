@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Testing Visualizations</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="map-container"></div>
+
+  <div id="menu">
+    <input id="mapbox://styles/paridhi12/cljz23lv900i901paam3o3tfm" type="radio" name="rtoggle" value="focused" checked="checked">
+    <label for="mapbox://styles/paridhi12/cljz23lv900i901paam3o3tfm">  Focused </label>
+    <input id="mapbox://styles/paridhi12/cljj53fma008r01pag74jczge" type="radio" name="rtoggle" value="nfocused">
+    <label for="mapbox://styles/paridhi12/cljj53fma008r01pag74jczge">Non-focused  </label>
+
+  </div>
+  <div id='sidebar' class='w240-mm w-full prose h-full-mm color-white border-r border--black absolute top-mm bottom left p12 p24-mm opacity100-mm z4'>
+    <div id='title' class='py12'>
+      <h4 class='custom-Zilla custom-ffc300' style = "color:#ffc300;"> Multi-User Interactive Data Visualization Dashboard </h4>
+    </div>
+    <div id='intro' class='py12 none block-mm'>
+      <p></p>
+    </div>
+    
+   
+
+    <div id="legend" class="style pt12 py18 border-t border--black">
+      <small class="align-center txt-s txt-uppercase color-gray-light">
+        <br> Legend  <br>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #ffc300;"></div>
+            <div class="legend-label"> SVI 20</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #ff8d19;"></div>
+            <div class="legend-label">SVI 100</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #ff5733;"></div>
+            <div class="legend-label">SVI 240</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #ff2e00;"></div>
+            <div class="legend-label">SVI 400</div>
+          </div>
+          <div class="legend-item">
+            <p>&nbsp;</p>
+            <div class="legend-label" style="font-size: 10px;  text-transform: none; line-height: 1;">Heights of the extrusions are based on county population </div>
+          </div> 
+    </div>
+    <div id='intro' class='py12 none block-mm'>
+      <p></p>
+    </div>
+
+    <div id="legend" class="style pt12 py18 border-t border--black">
+      <small class="align-center txt-s txt-uppercase color-gray-light">
+   
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #56ff00;"></div>
+            <div class="legend-label"> SLR low lying areas</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color:#b8e5f1;"></div>
+            <div class="legend-label">SLR depth - LOW</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color:#4789e0;"></div>
+            <div class="legend-label">SLR depth - MEDIUM</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #3d18a6;"></div>
+            <div class="legend-label">SLR depth - HIGH</div>
+          </div>
+    </div>
+
+<div class="btn-container">
+  <label>
+    <input type="radio" class="btn-radio" name="radio-btn" value="Sea Level" id="sl" >
+    <span class="radio-label">Sea Level</span>
+  </label>
+  <label>
+    <input type="radio" class="btn-radio" name="radio-btn" value="Sea Vulnerability" id="sv">
+    <span class="radio-label">Sea Vulnerability</span>
+  </label>
+  <label>
+    <input type="radio" class="btn-radio" name="radio-btn" value="High Risk Flood" id="fl">
+    <span class="radio-label">High Risk Flood</span>
+  </label>
+</div>
+
+    </div>
+  </div>
+  </div>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+  <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
+  <script src="https://unpkg.com/@turf/boolean-clip@7.1.4/umd/turf-boolean-clip.min.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+  <script src="main.js" type="module"></script>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Zilla+Slab" rel="stylesheet">
+  <link href="https://api.mapbox.com/mapbox-assembly/v0.13.0/assembly.min.css" rel="stylesheet">
+</body>
+</html>
