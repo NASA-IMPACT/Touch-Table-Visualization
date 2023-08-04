@@ -2,9 +2,6 @@
 import { legendTemplate } from './legend.js';
 import { popupTemplate } from './popupTemplate.js';
 
-
-
-const radioButtons = document.querySelectorAll('.btn-radio');
 const urlMap = {
   'Sea Level': 'https://maps.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_1ft/MapServer/tile/{z}/{y}/{x}',
   'Sea Vulnerability': 'https://maps.coast.noaa.gov/arcgis/rest/services/dc_slr/SOVI/MapServer/tile/{z}/{y}/{x}', // Replace with the actual URL for Sea Vulnerability
@@ -27,10 +24,10 @@ var isDragging={}
 const map = new mapboxgl.Map({
   container: 'map-container',
   //style: 'mapbox://styles/paridhi12/clj31l7oj02yj01qhdhtb300t', 
-  style: "mapbox://styles/paridhi12/cljz23lv900i901paam3o3tfm",//"mapbox://styles/paridhi12/cljj53fma008r01pag74jczge",//'mapbox://styles/mapbox/dark-v9',
+  style: "mapbox://styles/paridhi12/clkvrhtwx00a101p72ddj8r6v",//"mapbox://styles/paridhi12/cljj53fma008r01pag74jczge",//'mapbox://styles/mapbox/dark-v9',
   //style : 'mapbox://styles/yunjieli/ciu7h63gy00052inrtutrxnfp',
-  center: [-100.786052, 33.830348],
-  zoom: 4.5,
+  center: [-100.786052, 36.830348],
+  zoom: 5.8,
   pitch : 28,
   dragPan: false
   //maxZoom: 4.7
@@ -131,12 +128,15 @@ map.on("click",'state-area',(e)=> {
   const stateName = e.features[0].properties.STATE_NAME; // name of the clicke state
   selectedStateIds.push(stateId); // push state id to the active states list
 
+
   // Check if a popup already exists for the state
   if (popups[stateId]) 
   {
     // Reuse the existing popup
     console.log("already existing pop up for ", stateId);
     const popup=popups[stateId];
+    
+    
   } else 
   {
     // Create a new popup for the state
@@ -149,34 +149,58 @@ map.on("click",'state-area',(e)=> {
   for (const stateId of selectedStateIds) {
     const popup = popups[stateId];
     popup.addTo(map);
-  
+    const popupHeader = popup._content.querySelector(".header");
     // Add the mousedown event listener to the popup content
-    popup._content.addEventListener('mousedown', (e) => {
-      e.stopPropagation();
+    popupHeader.addEventListener('touchstart', (e) => {
+      //e.stopPropagation();
+      e.preventDefault();
       isDragging[stateId] = true;
     });
   
     // Add the mousemove event listener to the document
-    document.addEventListener('mousemove', (e) => {
+    document.addEventListener('touchmove', (e) => {
       if (isDragging[stateId]) {
         // Get the current popup for the item and update its position
         const popup = popups[stateId];
-          const { clientX, clientY } = e;
-          const pos = map.unproject([clientX, clientY]);
-          popup.setLngLat(pos);
+        const { clientX, clientY } = e.type.startsWith('touch') ? e.touches[0] : e;
+        const pos = map.unproject([clientX, clientY]);
+        popup.setLngLat(pos);
       }
     });
   
     // Add the mouseup event listener to the document
-    document.addEventListener('mouseup', (e) => {
+    document.addEventListener('touchend', (e) => {
       isDragging[stateId] = false;
     });
   }
 
+
   
+
+  // why not working??
+  // var mini = document.getElementById("minimize-button"+stateId);
+  // var show = document.getElementById("show-header"+stateId);
+  // //var hide = document.getElementById("hide"+stateId);
+  // var p = document.getElementById("pp");
+
+  // console.log("eta", pp);
+
+  // mini.addEventListener("click",(event)=>{
+  //   const isMinimized = true;
+  //   if (isMinimized) {
+  //     // If it was minimized, make it visible again
+  //     p.style.height = "10px";
+  //   } else {
+  //     // If it was not minimized, hide it
+  //     p.style.height = "100px";
+  //   }
+
+  // } );
+
+
+
   var slider =document.getElementById("height"+stateId);
-  
-  slider.addEventListener('mousedown', (event) => {
+  slider.addEventListener('mouseend', (event) => {
     event.stopPropagation();
   });
 
@@ -417,45 +441,6 @@ fl.addEventListener("change",()=>{
   }
 } );
 });
-
-
-
-
-// // Define the function to clip raster by state polygons
-// function clipRasterByStatePolygons(rasterUrl, stateGeojsonUrl) {
-//   fetch(stateGeojsonUrl)
-//     .then((response) => response.json())
-//     .then((stateGeojson) => {
-//       const stateFeatures = stateGeojson.features;
-
-//       stateFeatures.forEach((stateFeature) => {
-//         const stateId = stateFeature.properties.STATE_ID; // Assuming STATE_ID is a unique identifier for each state
-//         const stateGeometry = stateFeature.geometry;
-
-//         map.addSource('clipped-raster-source-' + stateId, {
-//           type: 'raster',
-//           tiles: [rasterUrl],
-//           tileSize: 256,
-//           bounds: turf.bbox(stateGeometry),
-//           minzoom: 0, // You can set the appropriate zoom levels here
-//           maxzoom: 22,
-//         });
-
-//         map.addLayer({
-//           id: 'clipped-raster-layer-' + stateId,
-//           type: 'raster',
-//           source: 'clipped-raster-source-' + stateId,
-//         });
-//       });
-//     })
-//     .catch((error) => console.error('Error fetching state GeoJSON:', error));
-// }
-
-// // Usage example
-// const rasterUrl = 'https://maps.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_1ft/MapServer/tile/{z}/{y}/{x}';
-// const stateGeojsonUrl = 'path/to/states.geojson'; // Replace with the actual path to the state GeoJSON file
-
-// clipRasterByStatePolygons(rasterUrl, stateGeojsonUrl);
 
 
 
