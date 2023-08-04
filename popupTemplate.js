@@ -107,7 +107,7 @@ export const popupTemplate = (stateId, stateName) => `
 <div class="minimize-button" id="minimize-button${stateId}">&#9477;</div>
 <div class="header" style="align:right; align-content:right;" draggable="true">&#9776;</div>
  <div class="header1">${stateName}</div>
- </div
+ </div>
   <div id="hide${stateId}" class=hide${stateId}">
   <h5 style="font-family: Arial, sans-serif; font-size: 13px; color: #ffc300; margin: 0; text-align: center;">Select Visualization(s)</h5>
 

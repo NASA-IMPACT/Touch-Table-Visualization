@@ -175,27 +175,27 @@ map.on("click",'state-area',(e)=> {
   }
 
 
-  
+
 
   // why not working??
-  // var mini = document.getElementById("minimize-button"+stateId);
-  // var show = document.getElementById("show-header"+stateId);
-  // //var hide = document.getElementById("hide"+stateId);
-  // var p = document.getElementById("pp");
+  var mini = document.getElementById("minimize-button"+stateId);
+  var show = document.getElementById("show-header"+stateId);
+  var hide = document.getElementById("hide"+stateId);
+  //var p = document.getElementById("pp");
 
-  // console.log("eta", pp);
+  console.log("eta", hide);
 
-  // mini.addEventListener("click",(event)=>{
-  //   const isMinimized = true;
-  //   if (isMinimized) {
-  //     // If it was minimized, make it visible again
-  //     p.style.height = "10px";
-  //   } else {
-  //     // If it was not minimized, hide it
-  //     p.style.height = "100px";
-  //   }
+  mini.addEventListener("click",(event)=>{
+    const isMinimized = hide.style.display === "block";
+    if (isMinimized) {
+      // If it was minimized, make it visible again
+      hide.style.display = "none";
+    } else {
+      // If it was not minimized, hide it
+      hide.style.display = "block";
+    }
 
-  // } );
+  } );
 
 
 
