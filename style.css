@@ -20,6 +20,16 @@
     display: flex;
     justify-content: center;
   }
+  #single-user {
+    background-color: #ffc300;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding-top:5px;
+    text-decoration: none;
+}
 
   #menu label {
     display: block;
@@ -70,7 +80,7 @@
 
   .slider {
     -webkit-appearance: none;
-    width: 80%;
+    width: 76%;
     height: 4px;
     background: #d3d3d3;
     outline: none;
@@ -139,3 +149,5 @@
     background-color: rgba(0, 0, 0, 0.6);
   }
   
+
+

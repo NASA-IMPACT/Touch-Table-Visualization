@@ -6,6 +6,8 @@
 </head>
 <body>
   <div id="map-container"></div>
+  
+
 
   <div id="menu">
     <input id="mapbox://styles/paridhi12/clkvrhtwx00a101p72ddj8r6v" type="radio" name="rtoggle" value="focused" checked="checked">
@@ -22,36 +24,34 @@
     <div id='intro' class='py12 none block-mm'>
       <p></p>
     </div>
-    
-   
+    <div style="display: flex; align-items: center;">
+      <input name="slider-sea" type="range" min="1" max="10" value="0" class="slider" id="height-sea">
+      <span id="selected-height" style="font-size: 8px; margin-left: 5px;">1ft</span>
+      <button id="clear" class="clear-button" style="margin-left: 5px; color:white;">X</button>
+    </div>
 
-    <div id="legend" class="style pt12 py18 border-t border--black">
-      <small class="align-center txt-s txt-uppercase color-gray-light">
-        <br> Legend  <br>
-          <div class="legend-item">
-            <div class="legend-color" style="background-color: #ffc300;"></div>
-            <div class="legend-label"> SVI 20</div>
-          </div>
-          <div class="legend-item">
-            <div class="legend-color" style="background-color: #ff8d19;"></div>
-            <div class="legend-label">SVI 100</div>
-          </div>
-          <div class="legend-item">
-            <div class="legend-color" style="background-color: #ff5733;"></div>
-            <div class="legend-label">SVI 240</div>
-          </div>
-          <div class="legend-item">
-            <div class="legend-color" style="background-color: #ff2e00;"></div>
-            <div class="legend-label">SVI 400</div>
-          </div>
-          <div class="legend-item">
-            <p>&nbsp;</p>
-            <div class="legend-label" style="font-size: 10px;  text-transform: none; line-height: 1;">Heights of the extrusions are based on county population </div>
-          </div> 
-    </div>
-    <div id='intro' class='py12 none block-mm'>
-      <p></p>
-    </div>
+<div class="btn-container">
+  <label>
+    <input type="checkbox" class="btn-radio" name="radio-btn" value="Sea Level" id="sl" >
+    <span class="radio-label">Sea Level</span>
+  </label>
+  <label>
+    <input type="checkbox" class="btn-radio" name="radio-btn" value="Sea Vulnerability" id="sv">
+    <span class="radio-label">Sea Vulnerability</span>
+  </label>
+  <label>
+    <input type="checkbox" class="btn-radio" name="radio-btn" value="High Risk Flood" id="fl">
+    <span class="radio-label">High Risk Flood</span>
+  </label>
+  
+</div>
+
+<div id="legend" class="style pt12 py18 border-t border--black">
+  <small class="align-center txt-s txt-uppercase color-gray-light">
+    <br> Legend  <br>
+      
+</div>
+
 
     <div id="legend" class="style pt12 py18 border-t border--black">
       <small class="align-center txt-s txt-uppercase color-gray-light">
@@ -71,32 +71,24 @@
           <div class="legend-item">
             <div class="legend-color" style="background-color: #3d18a6;"></div>
             <div class="legend-label">SLR depth - HIGH</div>
+            
           </div>
+          
     </div>
-
-<div class="btn-container">
-  <label>
-    <input type="radio" class="btn-radio" name="radio-btn" value="Sea Level" id="sl" >
-    <span class="radio-label">Sea Level</span>
-  </label>
-  <label>
-    <input type="radio" class="btn-radio" name="radio-btn" value="Sea Vulnerability" id="sv">
-    <span class="radio-label">Sea Vulnerability</span>
-  </label>
-  <label>
-    <input type="radio" class="btn-radio" name="radio-btn" value="High Risk Flood" id="fl">
-    <span class="radio-label">High Risk Flood</span>
-  </label>
-</div>
+    <a href="singleUser/singleUser.html" target="_blank">
+      <button style="background-color: #3498db; color: #fff; border: none; border-radius: 5px; padding: 10px 20px; font-size: 16px; cursor: pointer;">Single User</button>
+    </a>
 
     </div>
   </div>
   </div>
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
-  <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
-  <script src="https://unpkg.com/@turf/boolean-clip@7.1.4/umd/turf-boolean-clip.min.js"></script>
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
-  <script src="main.js" type="module"></script>
+  <script src="js/main.js" type="module"></script>
+  <script src="js/seaLevel.js" type="module"></script>
+  <script src="js/theme.js" type="module"></script>
+  <script src="js/map.js" type="module"></script>
+ 
 
 
   <link href="https://fonts.googleapis.com/css?family=Zilla+Slab" rel="stylesheet">
