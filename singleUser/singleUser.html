@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Single User</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <div id="map-container"></div>
+  
+
+
+  <div id="menu">
+    <input id="mapbox://styles/paridhi12/clkvrhtwx00a101p72ddj8r6v" type="radio" name="rtoggle" value="focused" checked="checked">
+    <label for="mapbox://styles/paridhi12/clkvrhtwx00a101p72ddj8r6v">  Focused </label>
+  
+    <input id="mapbox://styles/paridhi12/cljj53fma008r01pag74jczge" type="radio" name="rtoggle" value="nfocused">
+    <label for="mapbox://styles/paridhi12/cljj53fma008r01pag74jczge">Non-focused  </label>
+
+  </div>
+  <div id='sidebar' class='w240-mm w-full prose h-full-mm color-white border-r border--black absolute top-mm bottom left p12 p24-mm opacity100-mm z4'>
+    <div id='title' class='py12'>
+      <h4 class='custom-Zilla custom-ffc300' style = "color:#ffc300;"> Single User Interactive Data Visualization Dashboard </h4>
+    </div>
+    <div id='intro' class='py12 none block-mm'>
+      <p></p>
+    </div>
+    
+   
+    <div class="dash">
+      <div class="section">
+          <label>
+              <input id="svi" type="checkbox" class="checkbox"> Social Vulnerability
+          </label>
+          <select id="year" class="dropdown" disabled>
+              
+              <option value="2014">2014</option>
+              <option value="2016">2016</option>
+              <option value="2018">2018</option>
+              <option value="2020" selected>2020</option>
+          </select>
+      </div>
+      <div class="section">
+          <label>
+              <input id="risk" type="checkbox" class="checkbox"> Disaster Risk
+          </label>
+          <select id="type" class="dropdown" size=1 disabled>
+            <option value="">Overall</option>
+            <option value="AVLN_">Avalanche</option>
+            <option value="CFLD_"> Coastal Flooding</option>
+            <option value="CWAV_"> Cold Wave </option>
+            <option value="DRGT_"> Drought</option>
+            <option value="ERQK_">Earthquake </option>
+            <option value="HAIL_">Hail</option>
+            <option value="HWAV_"> Heat Wave</option>
+            <option value="HRCN_"> Hurricane</option>
+            <option value="ISTM_">Ice Storm </option>
+            <option value="LNDS_"> Landslide</option>
+            <option value="LTNG_"> Lightning</option>
+            <option value="RFLD_">Riverine Flooding </option>
+            <option value="SWND_"> Strong Wind</option>
+            <option value="TRND_"> Tornado</option>
+            <option value="TSUN_"> Tsunami</option>
+            <option value="VLCN_">Volcanic Activity </option>
+            <option value="WFIR_"> Wildfire</option>
+            <option value="WNTW_">Winter Weather </option>
+              
+          </select>
+    
+    
+      </div>
+      <div class="section">
+        <label>
+            <input id="sl" type="checkbox" class="checkbox"> Sea Level
+        </label>
+        <input id="height" type="range" class="slider" min="1" max="10" disabled value="1">
+        <span id="selected-height" style="font-size: 8px; margin-left: 5px;">1ft</span>
+    </div>
+    <div class="section">
+        <label>
+            <input id="sv" type="checkbox" class="checkbox"> Sea Vulnerability
+        </label>
+    </div>
+    <div class="section">
+        <label>
+            <input id="fl" type="checkbox" class="checkbox"> High Risk Flood
+        </label>
+    </div>
+    <div class="section" id="veda-div">
+      <label>
+          <input id="veda" type="checkbox" class="checkbox"> VEDA Data
+      </label>
+      <select id="veda-data" class="dropdown"  disabled style="width:90%;">
+      </select>
+      
+    </div>
+
+    <div class="buttons">
+        <button id="done" class="button">Done</button>
+        <button id="reset" class="button">Reset</button>
+        <button id="zoom" class="button" style="background-color: rgba(42,42,42,1)">🔍</button>
+    </div>
+
+</div>
+
+
+<div id="legend"  style="padding-top:20px;">
+  <small class="align-center txt-s txt-uppercase color-gray-light">
+      
+    <a href="../index.html" target="_blank">
+      <button style="background-color: #3498db; color: #fff; border: none; border-radius: 5px; padding: 10px 20px; font-size: 16px; cursor: pointer;">Multi User</button>
+    </a>
+  </div>
+
+</div>
+<div class="legend-category">
+  <div class="legend-title">Social Vulnerability</div> 
+  <div class="legend-item">
+      <div class="legend-color" style="background-color: #FFC300;"></div>
+      <div class="legend-label">Less Vulnerable</div>
+  </div>
+  <div class="legend-item">
+      <div class="legend-color" style="background-color: #FF5733;"></div>
+      <div class="legend-label">Vulnerable</div>
+  </div>
+  <div class="legend-item">
+      <div class="legend-color" style="background-color: #FF2E00;"></div>
+      <div class="legend-label">Highly Vulnerable</div>
+  </div>
+  <p>Extrusion height is the POPULATION</p>
+</div>
+<div class="legend-category-risk">
+  <div class="legend-title">Risk</div> 
+  <div class="legend-item">
+      <div class="legend-color" style="background-color: #ff5255;"></div>
+      <div class="legend-label">Not Risky</div>
+  </div>
+  <div class="legend-item">
+      <div class="legend-color" style="background-color: #de2d71;"></div>
+      <div class="legend-label">Less Risky</div>
+  </div>
+  <div class="legend-item">
+      <div class="legend-color" style="background-color: #7d0e86;"></div>
+      <div class="legend-label">Risky</div>
+  </div>
+  <div class="legend-item">
+    <div class="legend-color" style="background-color: #4c077c;"></div>
+    <div class="legend-label">Highly Risky</div>
+</div>
+<p>Extrusion height is the POPULATION</p>
+</div>
+
+<div class="legend-category-sl">
+  <div class="legend-title">Sea Level Rise</div> 
+  <div class="legend-item">
+      <div class="legend-color" style="background-color: #56ff00;"></div>
+      <div class="legend-label">SLR low lying areas</div>
+  </div>
+  <div class="legend-item">
+      <div class="legend-color" style="background-color: #b8e5f1;"></div>
+      <div class="legend-label">SLR depth - LOWy</div>
+  </div>
+  <div class="legend-item">
+      <div class="legend-color" style="background-color: #4789e0;"></div>
+      <div class="legend-label">SLR depth - MEDIUM</div>
+  </div>
+  <div class="legend-item">
+    <div class="legend-color" style="background-color: #3d18a6;"></div>
+    <div class="legend-label">HSLR depth - HIGH</div>
+</div>
+</div>
+
+
+<div class="legend-category-merged">
+  <div class="legend-title">SVI</div> 
+  <div class="legend-item">
+      <div class="legend-color" style="background-color: #FFA500;"></div>
+      <div class="legend-label">Not Risky</div>
+  </div>
+  <div class="legend-item">
+      <div class="legend-color" style="background-color: #FF7F50;"></div>
+      <div class="legend-label">Less Risky</div>
+  </div>
+  <div class="legend-item">
+      <div class="legend-color" style="background-color: #800080;"></div>
+      <div class="legend-label">Risky</div>
+  </div>
+  <div class="legend-item">
+    <div class="legend-color" style="background-color: #4B0082;"></div>
+    <div class="legend-label">Highly Risky</div>
+</div>
+<p>Extrusion height is the disaster risk</p>
+</div>
+<div id="legend-category-veda" class="legend-category-veda"></div>
+
+
+  </div>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Zilla+Slab" rel="stylesheet">
+  <link href="https://api.mapbox.com/mapbox-assembly/v0.13.0/assembly.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+  <script src="js/main.js" type="module" ></script>
+  <script src="js/map.js" ></script>
+  <script src="js/selections.js" ></script>
+
+</body>
+</html>
