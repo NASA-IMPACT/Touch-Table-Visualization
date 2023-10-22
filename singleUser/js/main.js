@@ -1,3 +1,23 @@
+function removeAllLayers(){
+  const allLayers = map.getStyle().layers;
+  allLayers.forEach(layer => {
+    
+    if (layer.id.substring(0, 3) === "svi" ) {
+      map.removeLayer(layer.id);
+    }
+    if (layer.id.substring(0, 4) === "risk" ) {
+      map.removeLayer(layer.id);
+    }
+    if (layer.id.substring(0, 4) === "veda" ) {
+      map.removeLayer(layer.id);
+    }
+    if (layer.id.substring(0, 6) === "merged" ) {
+      map.removeLayer(layer.id);
+    }
+    
+  });
+
+}
 
 done.addEventListener("click", async (e)=>{
     const svi = document.getElementById("svi");
@@ -9,7 +29,7 @@ done.addEventListener("click", async (e)=>{
     const year = document.getElementById("year");
     const type = document.getElementById("type");
     const veda = document.getElementById("veda");
-    
+    removeAllLayers()
 
 
     if (veda.checked){
@@ -77,23 +97,6 @@ done.addEventListener("click", async (e)=>{
     }
 
     if ((risk.checked)&(svi.checked)){
-        const allLayers = map.getStyle().layers;
-        allLayers.forEach(layer => {
-          
-          if (layer.id.substring(0, 3) === "svi" ) {
-            map.removeLayer(layer.id);
-          }
-          if (layer.id.substring(0, 4) === "risk" ) {
-            map.removeLayer(layer.id);
-          }
-          if (layer.id.substring(0, 4) === "veda" ) {
-            map.removeLayer(layer.id);
-          }
-          if (layer.id.substring(0, 6) === "merged" ) {
-            map.removeLayer(layer.id);
-          }
-          
-        });
         var data= null;
         var rating = null ;
         if (type.value == ''){
@@ -220,33 +223,7 @@ done.addEventListener("click", async (e)=>{
           });
         }
       }
-      if (!risk.checked) {
-        riskLayers.forEach(function(layer) {
-          var layerId = "risk"  + layer;
-          if (map.getLayer(layerId)) {
-              map.removeLayer(layerId);
-          }
-      });
-      }
-
-      if ((svi.checked)&(!risk.checked)) {
-        const filteredYears = years.filter(y => y !== year);
-        filteredYears.forEach(year => {
-          const layerName = "svi"  + year;
-          if (map.getLayer(layerName)) {
-              map.removeLayer(layerName);
-          }
-      });
-      const allLayers = map.getStyle().layers;
-        allLayers.forEach(layer => {
-          
-          if (layer.id.substring(0, 8) === "merged" ) {
-            map.removeLayer(layer.id);
-          }
-        });
-
-        
-     
+      if ((svi.checked)&(!risk.checked)) {     
         if (!map.getLayer("svi" + year.value)){
           map.addLayer({
             id: "svi" +year.value ,
@@ -282,14 +259,6 @@ done.addEventListener("click", async (e)=>{
     
         }
         
-    }
-    if (!svi.checked){
-        years.forEach(function(year) {
-            var layerId = "svi"  + year;
-            if (map.getLayer(layerId)) {
-                map.removeLayer(layerId);
-            }
-        });
     }
 
     if (sl.checked){
@@ -390,15 +359,14 @@ done.addEventListener("click", async (e)=>{
 
 
 const allLayers = map.getStyle().layers;
-
 allLayers.forEach(layer => {
   if (layer.id.substring(0, 6) === "merged" ) {
     
     map.on("click", layer.id , (e)=>{
-        
+
         const countyName = e.features[0].properties.NAME;
         const stateName = e.features[0].properties.STATEABBRV;
-        const year = layer.id.substring(6,11);
+        const year = layer.id.substring(6,10);
         const x ='RPL_THEMES_'+year;
         const countySVI = parseFloat(e.features[0].properties[x]).toFixed(2);
         const countyPOP = parseInt(e.features[0].properties.POPULATION  );
@@ -448,8 +416,7 @@ allLayers.forEach(layer => {
 
   if (layer.id.substring(0,3)==="svi") {
 
-    map.on("click", layer.id , (e)=>{
-        
+    map.on("click", layer.id , (e)=>{    
       const countyName = e.features[0].properties.NAME;
       const stateName = e.features[0].properties.STATEABBRV;
       const year = layer.id.substring(3);
@@ -552,32 +519,10 @@ reset.addEventListener("click", (e)=>{
             map.removeLayer(layerId);
         }
         });
-    years.forEach(function(year) {
-        var layerId = "svi"  + year;
-        if (map.getLayer(layerId)) {
-            map.removeLayer(layerId);
-        }
-    });
-    riskLayers.forEach(function(layer) {
-        var layerId = "risk"  + layer;
-        if (map.getLayer(layerId)) {
-            map.removeLayer(layerId);
-        }
-    });
-    const existingLayerId = `veda-layer`;
-    if (map.getLayer(existingLayerId)) {
-    map.removeLayer(existingLayerId);
-    }
+    removeAllLayers()
     if (map.getSource(`veda-layer`)) {
     map.removeSource(`veda-layer`);
     }
-
-    const allLayers = map.getStyle().layers;
-        allLayers.forEach(layer => {
-          if (layer.id.substring(0, 6) === "merged" ) {
-            map.removeLayer(layer.id);
-          }
-        });
     svi.checked= false;
     risk.checked=false;
     sl.checked=false;
